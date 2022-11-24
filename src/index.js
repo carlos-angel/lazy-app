@@ -1,3 +1,5 @@
+import { registerImage } from './lazy.js';
+
 const BASE_URL = 'https://randomfox.ca';
 
 const mountNode = document.getElementById('images');
@@ -7,6 +9,7 @@ function addImagen() {
   const src = `${BASE_URL}/images/${random()}.jpg`;
   const newImage = createImageNode(src);
   mountNode.append(newImage);
+  registerImage(newImage);
 }
 
 addButton.addEventListener('click', addImagen);
@@ -24,7 +27,7 @@ function createImageNode(src) {
   const image = document.createElement('img');
   image.className = 'mx-auto';
   image.width = 320;
-  image.src = src;
+  image.dataset.src = src;
 
   container.appendChild(image);
 
