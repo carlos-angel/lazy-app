@@ -1,3 +1,4 @@
+import h from 'hyperscript';
 import { registerImage } from './lazy.js';
 
 const BASE_URL = 'https://randomfox.ca';
@@ -21,15 +22,12 @@ function random() {
 }
 
 function createImageNode(src) {
-  const container = document.createElement('div');
-  container.className = 'p-4';
+  const image = h('img.mx-auto', {
+    width: 320,
+    'data-src': src,
+  });
 
-  const image = document.createElement('img');
-  image.className = 'mx-auto';
-  image.width = 320;
-  image.dataset.src = src;
-
-  container.appendChild(image);
+  const container = h('div.p-4', image);
 
   return container;
 }
